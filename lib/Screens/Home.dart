@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../Api/Service.dart';
 import 'Search.dart';
 import '../Models/User.dart';
+import 'Show.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,6 +45,12 @@ class _HomePageState extends State<HomePage> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ShowPage(id: data?[index].id)),
+                                );
+                              },
                             title: Row(
                               children: [
                                 Container(

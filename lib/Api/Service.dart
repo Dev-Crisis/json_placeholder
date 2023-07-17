@@ -5,6 +5,7 @@ import '../Models/User.dart';
 
 class FetchUserList {
   var data = [];
+  UserList user = UserList();
   List<UserList> results = [];
   String urlList = 'https://jsonplaceholder.typicode.com/users/';
 
@@ -28,5 +29,23 @@ class FetchUserList {
       print('error: $e');
     }
     return results;
+  }
+
+  Future<UserList> getUser({String? user_id}) async {
+    if (user_id != null) {
+      urlList = urlList + user_id;
+    }
+    var url = Uri.parse(urlList);
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        user = UserList.fromJson(json.decode(response.body));
+      } else {
+        print("fetch error");
+      }
+    } on Exception catch (e) {
+      print('error: $e');
+    }
+    return user;
   }
 }

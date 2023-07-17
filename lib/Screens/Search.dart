@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Api/Service.dart';
 import '../Models/User.dart';
+import 'Show.dart';
 
 class SearchUser extends SearchDelegate {
   final FetchUserList _userList = FetchUserList();
@@ -42,6 +43,12 @@ class SearchUser extends SearchDelegate {
               itemCount: data?.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ShowPage(id: data?[index].id)),
+                    );
+                  },
                   title: Row(
                     children: [
                       Container(
